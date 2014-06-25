@@ -16,11 +16,10 @@ exports.handleRequest = function (req, res) {
       statusCode = 200;
       res.writeHead(statusCode, headers);
       serveAssets(res, archive.paths.indexPath);
-    }else if(pathName === '/www.google.com'){
+    }else if(pathName){
       statusCode = 200;
       res.writeHead(statusCode, headers);
       serveAssets(res, archive.paths.archivedSites + pathName);
-      console.log('i got in');
     }
   }
   // res.end(archive.paths.list);
