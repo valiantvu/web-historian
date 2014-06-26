@@ -33,10 +33,11 @@ exports.handleRequest = function (req, res) {
     if(req.url === '/'){
       statusCode = 302;
       req.on('data', function(url){
-        var cleanUrl = url.split('=')[1] + "\n";
+        var urlString = url.toString();
+        console.log(urlString);
         res.writeHead(statusCode, headers);
-        fs.appendFile(archive.paths.list, cleanUrl);
-        res.end();
+        archive.addUrlToList(urlString);
+        serveAssets(res, archive.paths.loadingPath);
       });
     }
   }

@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
+var archive = require('../helpers/archive-helpers');
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -14,6 +15,7 @@ exports.paths = {
   'archivedSites' : path.join(__dirname, '../archives/sites'),
   'list' : path.join(__dirname, '../archives/sites.txt'),
   'indexPath': path.join(__dirname, '../web/public/index.html'),
+  'loadingPath': path.join(__dirname, '../web/public/loading.html'),
   'css': path.join(__dirname, '../web/public/styles.css')
 };
 
@@ -38,7 +40,9 @@ exports.readListOfUrls = function(callback){
 exports.isUrlInList = function(){
 };
 
-exports.addUrlToList = function(){
+exports.addUrlToList = function(url){
+  var cleanUrl = url.split('=')[1] + "\n";
+  fs.appendFile(archive.paths.list, cleanUrl);
 };
 
 exports.isURLArchived = function(pathName){
