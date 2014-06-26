@@ -6,8 +6,6 @@ var url = require('url');
 var fs = require('fs');
 // require more modules/folders here!
 
-
-
 exports.handleRequest = function (req, res) {
   var pathName = url.parse(req.url).pathname;
   var statusCode;
@@ -36,5 +34,4 @@ exports.handleRequest = function (req, res) {
       });
     }
   }
-  // res.end(archive.paths.list);
 };
