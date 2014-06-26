@@ -15,7 +15,7 @@ exports.handleRequest = function (req, res) {
       res.writeHead(statusCode, headers);
       serveAssets(res, archive.paths.indexPath);
     }else if(pathName === "/styles.css"){
-      var cssHeaders = headers;
+      var cssHeaders = JSON.parse(JSON.stringify(headers));
       cssHeaders['Content-Type'] = 'text/css';
       statusCode = 200;
       res.writeHead(statusCode, cssHeaders);
