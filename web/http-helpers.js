@@ -13,7 +13,6 @@ exports.headers = headers = {
 
 
 exports.serveAssets = function(res, asset) {
-  console.log(asset);
   res.end(fs.readFileSync(asset));
 
   // Write some code here that helps serve up your static files!

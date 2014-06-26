@@ -13,7 +13,8 @@ exports.paths = {
   'siteAssets' : path.join(__dirname, '../web/public'),
   'archivedSites' : path.join(__dirname, '../archives/sites'),
   'list' : path.join(__dirname, '../archives/sites.txt'),
-  'indexPath': path.join(__dirname, '../web/public/index.html')
+  'indexPath': path.join(__dirname, '../web/public/index.html'),
+  'css': path.join(__dirname, '../web/public/styles.css')
 };
 
 // Used for stubbing paths for jasmine tests, do not modify

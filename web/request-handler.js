@@ -14,6 +14,12 @@ exports.handleRequest = function (req, res) {
       statusCode = 200;
       res.writeHead(statusCode, headers);
       serveAssets(res, archive.paths.indexPath);
+    }else if(pathName === "/styles.css"){
+      var cssHeaders = headers;
+      cssHeaders['Content-Type'] = 'text/css';
+      statusCode = 200;
+      res.writeHead(statusCode, cssHeaders);
+      serveAssets(res, archive.paths.css);
     }else if(archive.isURLArchived(pathName)){
       statusCode = 200;
       res.writeHead(statusCode, headers);
