@@ -41,12 +41,11 @@ exports.isUrlInList = function(){
 };
 
 exports.addUrlToList = function(url){
-  var cleanUrl = url.split('=')[1] + "\n";
-  fs.appendFile(archive.paths.list, cleanUrl);
+  fs.appendFile(archive.paths.list, url + "\n");
 };
 
 exports.isURLArchived = function(pathName){
-  return fs.existsSync(exports.paths.archivedSites + pathName);
+  return fs.existsSync(exports.paths.archivedSites + '/' + pathName);
 };
 
 exports.downloadUrls = function(){
