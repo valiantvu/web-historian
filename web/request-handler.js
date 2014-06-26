@@ -10,28 +10,30 @@ var fs = require('fs');
 
 exports.handleRequest = function (req, res) {
   var pathName = url.parse(req.url).pathname;
-  console.log(pathName);
   var statusCode;
   if(req.method === 'GET'){
     if(req.url === '/'){
       statusCode = 200;
       res.writeHead(statusCode, headers);
       serveAssets(res, archive.paths.indexPath);
-    }else if(pathName){
+    }else if(archive.isURLArchived(pathName)){
       statusCode = 200;
       res.writeHead(statusCode, headers);
       serveAssets(res, archive.paths.archivedSites + pathName);
+    }else if(!archive.isURLArchived(pathName)) {
+      statusCode = 404;
+      res.writeHead(statusCode, headers);
+      res.end();
     }
   }else if(req.method === "POST"){
     if(req.url === '/'){
       statusCode = 302;
       req.on('data', function(url){
+        var cleanUrl = url.split('=')[1] + "\n";
         res.writeHead(statusCode, headers);
-        console.log("HERE", url.split('='));
-        fs.appendFile(archive.paths.list, url.split('=')[1] + "\n");
+        fs.appendFile(archive.paths.list, cleanUrl);
         res.end();
       });
-
     }
   }
   // res.end(archive.paths.list);

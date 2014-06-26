@@ -35,7 +35,9 @@ exports.isUrlInList = function(){
 exports.addUrlToList = function(){
 };
 
-exports.isURLArchived = function(){
+exports.isURLArchived = function(pathName){
+  console.log(pathName);
+  return fs.existsSync(exports.paths.archivedSites + pathName);
 };
 
 exports.downloadUrls = function(){
