@@ -34,16 +34,18 @@ exports.handleRequest = function (req, res) {
       statusCode = 302;
       req.on('data', function(url){
         var urlString = url.toString().split('=')[1];
-        console.log("OUTSIDE", archive.isURLArchived(urlString));
         if(archive.isURLArchived(urlString)){
-          console.log("IF");
           res.writeHead(statusCode, headers);
           serveAssets(res, archive.paths.archivedSites + '/' + urlString);
         }else{
-          console.log("ELSE");
           res.writeHead(statusCode, headers);
-          archive.addUrlToList(urlString);
+          // if not in list:
+          if(!archive.isUrlInList(urlString)){
+            archive.addUrlToList(urlString);
+          }
+          // serve loading page
           serveAssets(res, archive.paths.loadingPath);
+
         }
       });
     }

@@ -37,7 +37,11 @@ exports.readListOfUrls = function(callback){
   });
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(url){
+  if(fs.readFileSync(exports.paths.list).toString().indexOf(url) === -1){
+    return false;
+  }
+  return true;
 };
 
 exports.addUrlToList = function(url){
