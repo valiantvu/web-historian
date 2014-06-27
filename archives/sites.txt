@@ -1,3 +1,2 @@
 www.google.com
-
-www.dude.com
+www.w3.org
