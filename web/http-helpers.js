@@ -33,3 +33,15 @@ exports.getHtml = function(url) {
     });
   });
 };
+
+exports.getUrls = function(urls) {
+
+  var urlsToGet = [];
+
+  for (var i = 0; i < urls.length; i++) {
+    if(!archive.isURLArchived(urls[i])){
+      urlsToGet.push(urls[i]);
+    }
+  }
+  archive.downloadUrls(urlsToGet);
+};
